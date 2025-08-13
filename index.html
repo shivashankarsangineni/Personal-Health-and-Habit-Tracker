@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <div class="card">
+      <h2 class="mb-3">Welcome 👋</h2>
+      <p>Track your daily exercise, sleep, water intake and calories. See trends and get gentle predictions when you might miss your goals.</p>
+      <a href="{{ url_for('register') }}" class="btn btn-primary me-2">Get Started</a>
+      <a href="{{ url_for('login') }}" class="btn btn-outline-light">I already have an account</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

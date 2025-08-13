@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <div class="card">
+      <h3 class="mb-3">Set Your Goals</h3>
+      <form method="post">
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label>Exercise Goal (min/day)</label>
+            <input class="form-control" type="number" name="exercise_goal" min="0" value="{{ goals.exercise_goal if goals else 30 }}" required>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label>Sleep Goal (hours/day)</label>
+            <input class="form-control" type="number" step="0.1" name="sleep_goal" min="0" value="{{ goals.sleep_goal if goals else 7.0 }}" required>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label>Water Goal (L/day)</label>
+            <input class="form-control" type="number" step="0.1" name="water_goal" min="0" value="{{ goals.water_goal if goals else 3.0 }}" required>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label>Calories Goal (kcal/day)</label>
+            <input class="form-control" type="number" name="calories_goal" min="0" value="{{ goals.calories_goal if goals else 2200 }}" required>
+          </div>
+        </div>
+        <button class="btn btn-primary" type="submit">Save Goals</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

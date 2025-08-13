@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <div class="card">
+      <h3 class="mb-3">Add Today's Habits</h3>
+      <form method="post">
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label>Exercise (minutes)</label>
+            <input class="form-control" type="number" name="exercise" min="0" value="0" required>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label>Sleep (hours)</label>
+            <input class="form-control" type="number" name="sleep" step="0.1" min="0" value="0" required>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label>Water (litres)</label>
+            <input class="form-control" type="number" name="water" step="0.1" min="0" value="0" required>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label>Calories</label>
+            <input class="form-control" type="number" name="calories" min="0" value="0" required>
+          </div>
+        </div>
+        <button class="btn btn-primary" type="submit">Save</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

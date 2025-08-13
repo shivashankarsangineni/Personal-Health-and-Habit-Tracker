@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row g-3">
+  <div class="col-md-8">
+    <div class="card">
+      <h4 class="mb-3">Last 14 Days</h4>
+      <canvas id="habitChart" height="120"></canvas>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card mb-3">
+      <h5 class="mb-2">Today vs Goals</h5>
+      <ul class="list-group">
+        <li class="list-group-item bg-transparent d-flex justify-content-between align-items-center">
+          Exercise <span>{{ today.exercise_minutes or 0 }} / {{ goals.exercise_goal or 0 }} min</span>
+        </li>
+        <li class="list-group-item bg-transparent d-flex justify-content-between align-items-center">
+          Sleep <span>{{ today.sleep_hours or 0 }} / {{ goals.sleep_goal or 0 }} hrs</span>
+        </li>
+        <li class="list-group-item bg-transparent d-flex justify-content-between align-items-center">
+          Water <span>{{ today.water_litres or 0 }} / {{ goals.water_goal or 0 }} L</span>
+        </li>
+        <li class="list-group-item bg-transparent d-flex justify-content-between align-items-center">
+          Calories <span>{{ today.calories or 0 }} / {{ goals.calories_goal or 0 }} kcal</span>
+        </li>
+      </ul>
+    </div>
+    {% if alerts %}
+    <div class="card">
+      <h5 class="mb-2">Predictive Alerts</h5>
+      <ul>
+        {% for a in alerts %}<li>{{ a }}</li>{% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+  </div>
+</div>
+
+<div class="card mt-3">
+  <h5 class="mb-2">Recent Entries</h5>
+  <table class="table table-striped">
+    <thead><tr><th>Date</th><th>Exercise</th><th>Sleep</th><th>Water</th><th>Calories</th></tr></thead>
+    <tbody>
+      {% for r in recent %}
+      <tr>
+        <td>{{ r['date'] }}</td>
+        <td>{{ r['exercise_minutes'] }}</td>
+        <td>{{ r['sleep_hours'] }}</td>
+        <td>{{ r['water_litres'] }}</td>
+        <td>{{ r['calories'] }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<script>
+const labels = {{ labels|safe }};
+const exercise = {{ exercise|safe }};
+const sleep = {{ sleep|safe }};
+const water = {{ water|safe }};
+
+const ctx = document.getElementById('habitChart').getContext('2d');
+new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: labels,
+    datasets: [
+      { label: 'Exercise (min)', data: exercise },
+      { label: 'Sleep (hrs)', data: sleep },
+      { label: 'Water (L)', data: water }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false
+  }
+});
+</script>
+{% endblock %}
