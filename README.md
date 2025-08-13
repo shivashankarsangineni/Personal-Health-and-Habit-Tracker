@@ -30,9 +30,3 @@ It also generates **weekly reports** and provides **predictive alerts** if you'r
 
 
 
-
-
-
-
-Ask ChatGPT
-
